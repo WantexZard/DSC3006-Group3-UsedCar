@@ -1,0 +1,5 @@
+# D script uses pandas/numpy/matplotlib/scikit-learn; sklearn >=1.2 for sparse_output.
+numpy==2.5.4
+pandas==3.1.0
+matplotlib==3.10.9
+scikit-learn==1.9.1

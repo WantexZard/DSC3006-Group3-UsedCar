@@ -1,0 +1,99 @@
+{
+  "model_id": "rf__mf-0.3__msl-1",
+  "owner": "Member C",
+  "angle": "Angle 2 - Random Forest side",
+  "data": {
+    "package": "member-a-v1",
+    "path": "data",
+    "sha256": {
+      "cleaned.csv": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+      "split_manifest.csv": "eae5f790e40e356e2f17c7df4956cf85e02e6a5a7f049a2e40d8ab8ab468a179"
+    },
+    "features": [
+      "car_age",
+      "kilometers_run",
+      "energy_capacity",
+      "brand",
+      "brand_model",
+      "fuel_type",
+      "transmission"
+    ],
+    "n_development": 4789,
+    "n_test": 1208,
+    "cv_folds": 10
+  },
+  "preprocessing": {
+    "numeric": "median imputation; no scaling (RF is scale invariant)",
+    "categorical": "one-hot, drop=None, handle_unknown=\"ignore\"",
+    "fuel": "multi-label one-hot over the sorted label set",
+    "fitted_in": "training fold only; test transformed by the development fit",
+    "n_encoded_features": 214
+  },
+  "hyperparameters": {
+    "n_estimators": 500,
+    "max_features": 0.3,
+    "max_features_resolved": 64,
+    "min_samples_leaf": 1,
+    "max_depth": null,
+    "bootstrap": true,
+    "random_state": 42,
+    "n_jobs": 1
+  },
+  "search_space": {
+    "n_estimators": [
+      500
+    ],
+    "max_features": [
+      "sqrt",
+      0.3,
+      0.5,
+      1.0
+    ],
+    "min_samples_leaf": [
+      1,
+      2,
+      5
+    ],
+    "n_configs": 12
+  },
+  "selection": {
+    "criterion": "pooled out-of-fold RMSE on the 10 development folds",
+    "not_used": "mean of per-fold RMSE, and never the test split",
+    "selected_config_is": "selected on CV, so its OOF score is optimistic",
+    "tuning_table": "outputs/rf_tuning_main.csv"
+  },
+  "evaluation": {
+    "dev_pooled_oof": {
+      "rmse": 2539107.821061235,
+      "mae": 537275.4366896038,
+      "r2": 0.7512206838369286,
+      "mean_fold_rmse": 2321036.4619574156,
+      "fold_rmse_sd": 1084632.8622719562
+    },
+    "dev_in_sample": {
+      "n": 4789,
+      "rmse": 883701.232834625,
+      "mae": 190845.69182275407,
+      "r2": 0.969865575278421
+    },
+    "test": {
+      "n": 1208,
+      "rmse": 1537742.9293817943,
+      "mae": 456436.5639550791,
+      "r2": 0.8818411572334426
+    }
+  },
+  "software": {
+    "python": "3.12.8",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.9"
+  },
+  "timestamps": {
+    "frozen_at_local": "2026-11-18T20:13:45",
+    "wall_seconds": 6.1
+  },
+  "reproduce": "python -B code/tune_rf.py && python -B code/evaluate_rf.py && python -B code/finalize_rf.py"
+}

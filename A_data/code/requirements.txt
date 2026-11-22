@@ -1,0 +1,5 @@
+# Python >=3.10. The dataset builder itself uses only the standard library.
+# Shared preprocessing dependencies; keep the same resolved versions within a team.
+numpy>=1.24,<3
+pandas>=2.2.2,<4
+scikit-learn>=1.4.2,<2

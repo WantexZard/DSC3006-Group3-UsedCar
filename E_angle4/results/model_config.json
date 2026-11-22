@@ -1,0 +1,74 @@
+{
+  "group": "Group 3",
+  "data_version": "member-a-v1",
+  "data_sha256": {
+    "cleaned.csv": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+    "split_manifest.csv": "eae5f790e40e356e2f17c7df4956cf85e02e6a5a7f049a2e40d8ab8ab468a179"
+  },
+  "random_forest": {
+    "n_estimators": 500,
+    "max_features": 0.3,
+    "min_samples_leaf": 1,
+    "bootstrap": true,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "target": "natural_log(price)",
+  "inverse_transform": "exp(pred_log); no smearing or bias correction",
+  "preprocessing": "original shared_preprocessing.make_preprocessor(scale_numeric=False)",
+  "preprocessing_sha256": "42d3c955c42112b9a50bed23847b8ef5aedf0a421ef5e4cc356b4c0979f2d40d",
+  "selection": "max_features=0.3 fixed by group handoff before this run; no tuning",
+  "holdout_status": "Revised evaluation on the SAME previously viewed holdout; not a new blind test",
+  "run_scope": "Only RF/log 0.3; Lasso and RF/price are not fitted",
+  "started_at_utc": "2026-11-21T14:05:14.655208+00:00",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  },
+  "c_raw_price_verified": true,
+  "lasso": "reused prior GroupKFold predictions, no refit",
+  "c_raw_price_status": "row_id, y_true, fold and required RF config checks passed",
+  "historical_config": "results/development/config_used.json retained unchanged as a historical record, not current RF settings",
+  "price_quartile_edges_BDT": [
+    75000.0,
+    2280000.0,
+    3300000.0,
+    4280000.0,
+    85000000.0
+  ],
+  "old_RF_results": "results/audit/legacy_1over3; not included in current metrics or figures",
+  "c_raw_price_provenance": {
+    "config": "results/source_C/model_config.json",
+    "input_sha256": {
+      "oof": "795e06cad44c024e4bb96a772a096abe09e310eb34b7b3cc7b181e81463de098",
+      "holdout": "ef4ecf77da96b4cab2bcc0efb6c60e155b2e433507900e36b5cc2c6d259ba2e5",
+      "config": "7cd1576bf753a0fcf2377139586f1b25b18e5ba2017fc64f00bd98b807333664"
+    },
+    "random_forest": {
+      "n_estimators": 500,
+      "max_features": 0.3,
+      "min_samples_leaf": 1,
+      "bootstrap": true,
+      "random_state": 42,
+      "n_jobs": 1
+    },
+    "selection": {
+      "criterion": "pooled out-of-fold RMSE on the 10 development folds",
+      "not_used": "mean of per-fold RMSE, and never the test split",
+      "selected_config_is": "selected on CV, so its OOF score is optimistic",
+      "tuning_table": "outputs/rf_tuning_main.csv"
+    },
+    "software_as_reported_by_C": {
+      "python": "3.12.8",
+      "scikit-learn": "1.9.1",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.16.3",
+      "matplotlib": "3.10.9"
+    },
+    "integration_model_fits": 0,
+    "comparison_limit": "Raw-price-selected frozen RF configuration; no separate log-target tuning; source software environments differ."
+  }
+}

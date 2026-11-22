@@ -1,0 +1,6 @@
+# Recorded environment for the delivered B results.
+# Re-running with a different scikit-learn version can change selected alpha and features.
+numpy==1.26.4
+pandas==2.2.3
+scikit-learn==1.4.0
+joblib

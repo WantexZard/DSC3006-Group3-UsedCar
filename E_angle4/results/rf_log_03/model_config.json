@@ -1,0 +1,30 @@
+{
+  "group": "Group 3",
+  "data_version": "member-a-v1",
+  "data_sha256": {
+    "cleaned.csv": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+    "split_manifest.csv": "eae5f790e40e356e2f17c7df4956cf85e02e6a5a7f049a2e40d8ab8ab468a179"
+  },
+  "random_forest": {
+    "n_estimators": 500,
+    "max_features": 0.3,
+    "min_samples_leaf": 1,
+    "bootstrap": true,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "target": "natural_log(price)",
+  "inverse_transform": "exp(pred_log); no smearing or bias correction",
+  "preprocessing": "original shared_preprocessing.make_preprocessor(scale_numeric=False)",
+  "preprocessing_sha256": "42d3c955c42112b9a50bed23847b8ef5aedf0a421ef5e4cc356b4c0979f2d40d",
+  "selection": "max_features=0.3 fixed by group handoff before this run; no tuning",
+  "holdout_status": "Revised evaluation on the SAME previously viewed holdout; not a new blind test",
+  "run_scope": "Only RF/log 0.3; Lasso and RF/price are not fitted",
+  "started_at_utc": "2026-11-21T14:05:14.655208+00:00",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "data_hashes_match": true,
+  "group_overlap": 0,
+  "rf_log_oof_rows": 4789,
+  "rf_log_holdout_rows": 1208,
+  "lasso_predictions_unchanged": true,
+  "rf_price_refits": 0,
+  "lasso_refits": 0,
+  "rf_log_refits_this_integration": 0,
+  "C_row_alignment_verified": true,
+  "expected_full_model_count": 4,
+  "available_model_count": 4,
+  "duplicate_oof_keys": 0,
+  "duplicate_holdout_keys": 0,
+  "same_previously_viewed_holdout": true,
+  "no_smearing": true
+}

@@ -1,0 +1,290 @@
+{
+  "status": "PASS",
+  "development": [
+    {
+      "model_id": "Lasso_price",
+      "model": "Lasso / price",
+      "target_scale": "price",
+      "max_features": null,
+      "source": "reused_Lasso_no_refit",
+      "status": "verified",
+      "n": 4789,
+      "rmse_BDT": 2933853.156774478,
+      "mae_BDT": 880265.4796063455,
+      "r2_price": 0.6678542273600077,
+      "mean_residual_BDT": 39820.145705477444,
+      "negative_prediction_count": 133,
+      "mean_fold_rmse_BDT": 2790190.812800274,
+      "sd_fold_rmse_BDT": 955170.1120989644
+    },
+    {
+      "model_id": "Lasso_log",
+      "model": "Lasso / log-price",
+      "target_scale": "log_price",
+      "max_features": null,
+      "source": "reused_Lasso_no_refit",
+      "status": "verified",
+      "n": 4789,
+      "rmse_BDT": 2603533.5502425013,
+      "mae_BDT": 570637.6187909306,
+      "r2_price": 0.7384357770718399,
+      "mean_residual_BDT": 200214.90212773808,
+      "negative_prediction_count": 0,
+      "mean_fold_rmse_BDT": 2324724.7674268177,
+      "sd_fold_rmse_BDT": 1235035.0190172107
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "model": "RF / price (0.3)",
+      "target_scale": "price",
+      "max_features": 0.3,
+      "source": "C_frozen",
+      "status": "verified",
+      "n": 4789,
+      "rmse_BDT": 2539107.821061235,
+      "mae_BDT": 537275.4366896038,
+      "r2_price": 0.7512206838369286,
+      "mean_residual_BDT": 35885.40041197018,
+      "negative_prediction_count": 0,
+      "mean_fold_rmse_BDT": 2321036.4619574156,
+      "sd_fold_rmse_BDT": 1084632.8622719562
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "model": "RF / log-price (0.3)",
+      "target_scale": "log_price",
+      "max_features": 0.3,
+      "source": "new_RF_log_03",
+      "status": "verified",
+      "n": 4789,
+      "rmse_BDT": 2572738.074359085,
+      "mae_BDT": 507940.06039892026,
+      "r2_price": 0.7445869220161445,
+      "mean_residual_BDT": 178098.69329417276,
+      "negative_prediction_count": 0,
+      "mean_fold_rmse_BDT": 2309088.6795594245,
+      "sd_fold_rmse_BDT": 1195348.6427094275
+    }
+  ],
+  "holdout": [
+    {
+      "model_id": "Lasso_price",
+      "model": "Lasso / price",
+      "target_scale": "price",
+      "max_features": null,
+      "source": "reused_Lasso_no_refit",
+      "status": "verified",
+      "n": 1208,
+      "rmse_BDT": 2284622.9609259907,
+      "mae_BDT": 889655.5307025206,
+      "r2_price": 0.7391878460851699,
+      "mean_residual_BDT": -51870.75002476121,
+      "negative_prediction_count": 52
+    },
+    {
+      "model_id": "Lasso_log",
+      "model": "Lasso / log-price",
+      "target_scale": "log_price",
+      "max_features": null,
+      "source": "reused_Lasso_no_refit",
+      "status": "verified",
+      "n": 1208,
+      "rmse_BDT": 1572938.0331954104,
+      "mae_BDT": 480140.0028007536,
+      "r2_price": 0.8763705381868648,
+      "mean_residual_BDT": 94400.93477341498,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "model": "RF / price (0.3)",
+      "target_scale": "price",
+      "max_features": 0.3,
+      "source": "C_frozen",
+      "status": "verified",
+      "n": 1208,
+      "rmse_BDT": 1537742.9293817943,
+      "mae_BDT": 456436.5639550791,
+      "r2_price": 0.8818411572334426,
+      "mean_residual_BDT": -39275.213899282884,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "model": "RF / log-price (0.3)",
+      "target_scale": "log_price",
+      "max_features": 0.3,
+      "source": "new_RF_log_03",
+      "status": "verified",
+      "n": 1208,
+      "rmse_BDT": 1619300.1352708724,
+      "mae_BDT": 426039.34575489507,
+      "r2_price": 0.8689752150332435,
+      "mean_residual_BDT": 110264.35077212706,
+      "negative_prediction_count": 0
+    }
+  ],
+  "quartiles": [
+    {
+      "model_id": "Lasso_log",
+      "price_bin": "Q1_low",
+      "n": 304,
+      "rmse_BDT": 420790.42622638633,
+      "mae_BDT": 247567.83546974798,
+      "r2_price": 0.4167628381233468,
+      "mean_residual_BDT": -93825.94244892913,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "Lasso_log",
+      "price_bin": "Q2",
+      "n": 302,
+      "rmse_BDT": 455877.2569825896,
+      "mae_BDT": 308678.61913173634,
+      "r2_price": -1.005210125974728,
+      "mean_residual_BDT": -201820.04723635968,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "Lasso_log",
+      "price_bin": "Q3",
+      "n": 301,
+      "rmse_BDT": 347591.96890239505,
+      "mae_BDT": 259892.80004553523,
+      "r2_price": -0.8715097017082154,
+      "mean_residual_BDT": -3797.1960859927085,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "Lasso_log",
+      "price_bin": "Q4_high",
+      "n": 301,
+      "rmse_BDT": 3069405.6495008287,
+      "mae_BDT": 1107308.3907276292,
+      "r2_price": 0.8380799084735441,
+      "mean_residual_BDT": 679907.0631163594,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "Lasso_price",
+      "price_bin": "Q1_low",
+      "n": 304,
+      "rmse_BDT": 1193345.185795894,
+      "mae_BDT": 826585.1756455508,
+      "r2_price": -3.690786410445578,
+      "mean_residual_BDT": 77976.08162003985,
+      "negative_prediction_count": 50
+    },
+    {
+      "model_id": "Lasso_price",
+      "price_bin": "Q2",
+      "n": 302,
+      "rmse_BDT": 938943.5006187302,
+      "mae_BDT": 622706.6308718658,
+      "r2_price": -7.506344285212929,
+      "mean_residual_BDT": -515167.6007687089,
+      "negative_prediction_count": 1
+    },
+    {
+      "model_id": "Lasso_price",
+      "price_bin": "Q3",
+      "n": 301,
+      "rmse_BDT": 601521.925759429,
+      "mae_BDT": 424486.3548789917,
+      "r2_price": -4.604740894970038,
+      "mean_residual_BDT": -190672.0816705779,
+      "negative_prediction_count": 1
+    },
+    {
+      "model_id": "Lasso_price",
+      "price_bin": "Q4_high",
+      "n": 301,
+      "rmse_BDT": 4273491.7599185305,
+      "mae_BDT": 1686359.4430249743,
+      "r2_price": 0.6861241468645307,
+      "mean_residual_BDT": 420625.6384471441,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "price_bin": "Q1_low",
+      "n": 304,
+      "rmse_BDT": 426397.83961289626,
+      "mae_BDT": 187382.2183467217,
+      "r2_price": 0.40111494059607056,
+      "mean_residual_BDT": -107314.68153985181,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "price_bin": "Q2",
+      "n": 302,
+      "rmse_BDT": 433761.2705850788,
+      "mae_BDT": 267834.0095305472,
+      "r2_price": -0.8153717836576821,
+      "mean_residual_BDT": -138773.51276261767,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "price_bin": "Q3",
+      "n": 301,
+      "rmse_BDT": 345970.4587467478,
+      "mae_BDT": 236434.44517518813,
+      "r2_price": -0.8540893127808846,
+      "mean_residual_BDT": 35939.6476310239,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_log_mf03",
+      "price_bin": "Q4_high",
+      "n": 301,
+      "rmse_BDT": 3167219.699806002,
+      "mae_BDT": 1015410.9515566544,
+      "r2_price": 0.8275955210062397,
+      "mean_residual_BDT": 654201.8798611851,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "price_bin": "Q1_low",
+      "n": 304,
+      "rmse_BDT": 767764.0101135758,
+      "mae_BDT": 279282.7806403323,
+      "r2_price": -0.9416412403091796,
+      "mean_residual_BDT": -212880.5149389634,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "price_bin": "Q2",
+      "n": 302,
+      "rmse_BDT": 664119.989706351,
+      "mae_BDT": 325622.69723254495,
+      "r2_price": -3.255564145350765,
+      "mean_residual_BDT": -214675.72711228847,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "price_bin": "Q3",
+      "n": 301,
+      "rmse_BDT": 373209.4922421689,
+      "mae_BDT": 252252.73930954488,
+      "r2_price": -1.1575356371399201,
+      "mean_residual_BDT": -13568.346255260234,
+      "negative_prediction_count": 0
+    },
+    {
+      "model_id": "RF_price_mf03",
+      "price_bin": "Q4_high",
+      "n": 301,
+      "rmse_BDT": 2883209.0868046037,
+      "mae_BDT": 970788.2885271529,
+      "r2_price": 0.8571288829065382,
+      "mean_residual_BDT": 286336.7440593209,
+      "negative_prediction_count": 0
+    }
+  ],
+  "c_verified": true
+}

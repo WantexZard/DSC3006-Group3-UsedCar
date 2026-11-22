@@ -1,0 +1,4 @@
+# Optional notebook UI; the analysis scripts do not require Jupyter.
+jupyterlab>=4
+ipykernel>=7
+nbformat>=5

@@ -1,0 +1,104 @@
+{
+  "selection_criterion": "pooled_oof_rmse",
+  "seed": 42,
+  "n_estimators": 500,
+  "n_folds": 10,
+  "n_configs": 12,
+  "full_run": true,
+  "best_model_id": "rf__mf-0.3__msl-1",
+  "best_config": {
+    "max_features": 0.3,
+    "min_samples_leaf": 1,
+    "n_estimators": 500,
+    "max_depth": null,
+    "bootstrap": true,
+    "random_state": 42
+  },
+  "best_pooled_oof": {
+    "rmse": 2539107.821061235,
+    "mae": 537275.4366896038,
+    "r2": 0.7512206838369286,
+    "mean_fold_rmse": 2321036.4619574156,
+    "fold_rmse_sd": 1084632.8622719562
+  },
+  "resolved_max_features_per_fold": {
+    "0": 203,
+    "1": 209,
+    "2": 206,
+    "3": 208,
+    "4": 202,
+    "5": 206,
+    "6": 208,
+    "7": 208,
+    "8": 202,
+    "9": 205
+  },
+  "selection_audit_leave_one_fold_out": [
+    {
+      "held_out_fold": 0,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 1809975.5130669323,
+      "global_best_rmse_on_held_out_fold": 1809975.5130669323
+    },
+    {
+      "held_out_fold": 1,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 2470137.2407822814,
+      "global_best_rmse_on_held_out_fold": 2470137.2407822814
+    },
+    {
+      "held_out_fold": 2,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 2420024.113060889,
+      "global_best_rmse_on_held_out_fold": 2420024.113060889
+    },
+    {
+      "held_out_fold": 3,
+      "chosen_config": "rf__mf-0.5__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 1710133.166995964,
+      "global_best_rmse_on_held_out_fold": 1599649.2613496236
+    },
+    {
+      "held_out_fold": 4,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 1456827.5180720303,
+      "global_best_rmse_on_held_out_fold": 1456827.5180720303
+    },
+    {
+      "held_out_fold": 5,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 2390932.4599308437,
+      "global_best_rmse_on_held_out_fold": 2390932.4599308437
+    },
+    {
+      "held_out_fold": 6,
+      "chosen_config": "rf__mf-0.5__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 3533714.6429217574,
+      "global_best_rmse_on_held_out_fold": 3424382.4393133805
+    },
+    {
+      "held_out_fold": 7,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 1713449.100019902,
+      "global_best_rmse_on_held_out_fold": 1713449.100019902
+    },
+    {
+      "held_out_fold": 8,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 4780876.298995521,
+      "global_best_rmse_on_held_out_fold": 4780876.298995521
+    },
+    {
+      "held_out_fold": 9,
+      "chosen_config": "rf__mf-0.3__msl-1",
+      "chosen_config_rmse_on_held_out_fold": 1144110.674982752,
+      "global_best_rmse_on_held_out_fold": 1144110.674982752
+    }
+  ],
+  "selection_audit_note": "Not nested CV. Models for the other folds were trained on data that includes the held-out fold; this only checks whether the ranking is stable when one fold is removed.",
+  "data": {
+    "cleaned.csv": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+    "split_manifest.csv": "eae5f790e40e356e2f17c7df4956cf85e02e6a5a7f049a2e40d8ab8ab468a179"
+  },
+  "wall_seconds": 606.9
+}

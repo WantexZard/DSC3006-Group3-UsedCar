@@ -1,0 +1,5 @@
+model_id,model,target_scale,max_features,source,status,n,rmse_BDT,mae_BDT,r2_price,mean_residual_BDT,negative_prediction_count
+Lasso_price,Lasso / price,price,,reused_Lasso_no_refit,verified,1208,2284622.9609259907,889655.5307025206,0.7391878460851699,-51870.75002476121,52
+Lasso_log,Lasso / log-price,log_price,,reused_Lasso_no_refit,verified,1208,1572938.0331954104,480140.0028007536,0.8763705381868648,94400.93477341498,0
+RF_price_mf03,RF / price (0.3),price,0.3,C_frozen,verified,1208,1537742.9293817943,456436.5639550791,0.8818411572334426,-39275.213899282884,0
+RF_log_mf03,RF / log-price (0.3),log_price,0.3,new_RF_log_03,verified,1208,1619300.1352708724,426039.34575489507,0.8689752150332435,110264.35077212706,0

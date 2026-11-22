@@ -1,0 +1,174 @@
+{
+  "experiment": "Angle 2 线性侧（开发集 OOF 主表）",
+  "data": {
+    "version": "member-a-v1",
+    "cleaned_csv_sha256": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+    "n_rows_all": 5997,
+    "n_development": 4789,
+    "n_groups_development": 4486,
+    "outer_folds": 10,
+    "test_set_used": false
+  },
+  "target": {
+    "column": "price",
+    "unit": "BDT",
+    "transform": "none"
+  },
+  "features": {
+    "numeric": [
+      "car_age",
+      "kilometers_run",
+      "energy_capacity"
+    ],
+    "categorical_onehot": [
+      "brand",
+      "brand_model",
+      "transmission"
+    ],
+    "fuel_multi_hot": [
+      "fuel_type"
+    ],
+    "excluded": [
+      "title",
+      "model",
+      "year_of_manufacture",
+      "row_id",
+      "source_line"
+    ]
+  },
+  "preprocessing": {
+    "numeric": "SimpleImputer(median) -> StandardScaler",
+    "categorical": "SimpleImputer(most_frequent) -> OneHotEncoder(handle_unknown='ignore')",
+    "fuel": "SimpleImputer(most_frequent) -> OneHotEncoder(handle_unknown='ignore')  # 燃料多热",
+    "placement": "ColumnTransformer 内，每个训练折单独 fit（含内层折），不使用全量 fit_transform"
+  },
+  "ols_numerics": {
+    "solver": "SVD least squares, rcond=1e-10（显式截断近零奇异值）",
+    "reason": "brand 与 brand_model 哑变量精确共线（每个品牌的 brand_model 哑变量求和恒等于该品牌哑变量），叠加稀有车型单行哑变量后，每折设计阵 202–209 列、秩只有 171–177；sklearn 默认 rcond 会把数值噪声方向放大，出现 1e18 量级预测",
+    "rank_per_fold": [
+      {
+        "cv_fold": 0,
+        "rank": 173,
+        "n_columns": 203
+      },
+      {
+        "cv_fold": 1,
+        "rank": 177,
+        "n_columns": 209
+      },
+      {
+        "cv_fold": 2,
+        "rank": 174,
+        "n_columns": 206
+      },
+      {
+        "cv_fold": 3,
+        "rank": 177,
+        "n_columns": 208
+      },
+      {
+        "cv_fold": 4,
+        "rank": 171,
+        "n_columns": 202
+      },
+      {
+        "cv_fold": 5,
+        "rank": 175,
+        "n_columns": 206
+      },
+      {
+        "cv_fold": 6,
+        "rank": 177,
+        "n_columns": 208
+      },
+      {
+        "cv_fold": 7,
+        "rank": 176,
+        "n_columns": 208
+      },
+      {
+        "cv_fold": 8,
+        "rank": 172,
+        "n_columns": 202
+      },
+      {
+        "cv_fold": 9,
+        "rank": 173,
+        "n_columns": 205
+      }
+    ]
+  },
+  "outer_cv": {
+    "scheme": "固定 10 折（沿用 split_manifest.csv / 旧 predictions.csv 的 cv_fold，逐行读回，未重划）",
+    "group_isolation": "同组不跨折（已校验）",
+    "ols_tuned": false
+  },
+  "inner_cv": {
+    "scheme": "5-fold GroupKFold，按 group_id 分组，无 shuffle（seed 固定）",
+    "selection_criterion": "内层 5 折平均验证 RMSE 最小",
+    "tie_break": "并列时取 alpha 较大者（更强正则）",
+    "ridge_alternative": "不使用 RidgeCV 的默认留一法（其等价 KFold 不按组）；Ridge 与 Lasso 共用同一内层流程"
+  },
+  "alpha_grid": {
+    "min": 0.01,
+    "max": 10000.0,
+    "n": 100,
+    "spacing": "logspace(base 10)",
+    "ridge_solver": "svd（一条路径解出全部 alpha）",
+    "lasso_solver": "coordinate descent，warm_start 沿 alpha 递减，max_iter=20000, tol=0.001（内层选参）",
+    "lasso_final_tol": 1e-08
+  },
+  "models": {
+    "OLS": {
+      "alpha": null,
+      "note": "不调参，直接在外层训练折 fit"
+    },
+    "Ridge": {
+      "alpha_selected_per_fold": [
+        0.10722672220103231,
+        0.21544346900318845,
+        0.4328761281083059,
+        0.5722367659350217,
+        0.14174741629268056,
+        0.16297508346206444,
+        0.37649358067924676,
+        0.8697490026177834,
+        1.3219411484660286,
+        0.093260334688322
+      ],
+      "alpha_median": 0.2959685248412176
+    },
+    "Lasso": {
+      "alpha_selected_per_fold": [
+        932.6033468832198,
+        2154.4346900318865,
+        2848.035868435805,
+        2477.0763559917136,
+        613.5907273413176,
+        1072.2672220103232,
+        811.1308307896873,
+        4328.7612810830615,
+        1417.4741629268046,
+        705.4802310718645
+      ],
+      "alpha_median": 1244.870692468564,
+      "alpha_final_full_development": 3274.5491628777313,
+      "n_selected_features": 60,
+      "n_candidate_features": 214
+    }
+  },
+  "final_configuration": {
+    "linear_side_deployable_model": "Lasso(alpha=最终 alpha) 在全开发集拟合，仅用于系数解读；不做测试集预测",
+    "note": "Angle 2 主表比较四个模型（含冻结 RF）的开发集 pooled OOF；测试集只报冻结 RF 的 1,208 条"
+  },
+  "seed": 42,
+  "convergence_warnings": 0,
+  "software": {
+    "python": "3.12.11",
+    "scikit_learn": "1.4.0",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3"
+  },
+  "rf_row": "未提供冻结 RF 的 OOF 文件，主表暂只含三个线性模型；RF 行由 A 侧提供。",
+  "runtime_seconds": 206.9
+}

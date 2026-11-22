@@ -1,0 +1,61 @@
+variable,coefficient
+categorical__brand_rolls royce,75732516.06541198
+"categorical__brand_model_[""mercedes-benz"",""g-class""]",49032497.39653616
+"categorical__brand_model_[""lexus"",""lx 600""]",43481833.60961312
+"categorical__brand_model_[""range rover"",""vogue""]",34686802.304119766
+categorical__brand_mercedes-benz,16292054.834854782
+"categorical__brand_model_[""mercedes-benz"",""e-class""]",-9492306.292583376
+categorical__brand_lexus,6705868.06360744
+fuel__fuel_type_electric,6485750.278805146
+"categorical__brand_model_[""toyota"",""land cruiser""]",6454629.344548968
+categorical__brand_bmw,4552590.7589061605
+"categorical__brand_model_[""toyota"",""alphard""]",4452771.537305207
+"categorical__brand_model_[""toyota"",""prado""]",3583578.845273995
+"categorical__brand_model_[""lexus"",""rx""]",3538828.4857950932
+categorical__brand_range rover,2799515.2870826414
+"categorical__brand_model_[""lexus"",""lx""]",2666470.410408113
+"categorical__brand_model_[""lexus"",""nx""]",-2442290.5219054767
+"categorical__brand_model_[""toyota"",""starlet""]",2273032.5750087197
+"categorical__brand_model_[""bmw"",""x5""]",-1990162.503705901
+fuel__fuel_type_diesel,-1879857.5074301746
+"categorical__brand_model_[""toyota"",""hiace""]",-1781201.6586634277
+categorical__brand_kia,1661724.5263696557
+"categorical__brand_model_[""toyota"",""crown""]",1494699.1960628876
+categorical__brand_audi,1484378.4429993725
+numeric__car_age,-1456885.3917677945
+"categorical__brand_model_[""toyota"",""harrier""]",1450329.4203386426
+numeric__energy_capacity,1269142.8368893866
+"categorical__brand_model_[""lexus"",""es""]",-1201741.656173165
+fuel__fuel_type_cng,1193804.9919904785
+"categorical__brand_model_[""toyota"",""aqua""]",-1172988.8534920157
+"categorical__brand_model_[""toyota"",""noah""]",-1064004.9588317028
+"categorical__brand_model_[""toyota"",""axio""]",-950790.8571290161
+"categorical__brand_model_[""toyota"",""prius""]",-904069.1315385897
+"categorical__brand_model_[""toyota"",""fielder""]",-820444.0487448506
+"categorical__brand_model_[""toyota"",""c-hr""]",-818507.369130209
+"categorical__brand_model_[""honda"",""insight""]",733243.9654317867
+categorical__brand_hyundai,-693390.6786667176
+"categorical__brand_model_[""honda"",""cr-v""]",668148.429767886
+categorical__brand_mitsubishi,-664305.8207507659
+fuel__fuel_type_hybrid,-552350.2492716095
+"categorical__brand_model_[""toyota"",""voxy""]",-548546.3203956453
+"categorical__brand_model_[""toyota"",""esquire""]",-547472.6162226537
+"categorical__brand_model_[""mitsubishi"",""pajero""]",-507687.1843812026
+"categorical__brand_model_[""toyota"",""yaris""]",-506770.06249016605
+categorical__brand_nissan,-465528.998587673
+"categorical__brand_model_[""rolls royce"",""specter 2025""]",441669.7857206712
+categorical__transmission_automatic,385332.2234225756
+"categorical__brand_model_[""toyota"",""sienta""]",-333353.8926941831
+numeric__kilometers_run,-270779.90652122855
+fuel__fuel_type_lpg,269788.3145053459
+"categorical__brand_model_[""toyota"",""corolla""]",-249047.7961257546
+fuel__fuel_type_octane,-161168.80425330013
+"categorical__brand_model_[""toyota"",""yaris cross""]",-143903.38443194196
+"categorical__brand_model_[""toyota"",""premio""]",132440.61604829575
+"categorical__brand_model_[""honda"",""grace""]",-124042.52505622995
+fuel__fuel_type_other fuel type,-77001.9340612448
+"categorical__brand_model_[""toyota"",""allion""]",68223.32004206067
+fuel__fuel_type_petrol,32378.137855986795
+"categorical__brand_model_[""toyota"",""vitz""]",18870.19234165166
+categorical__brand_proton,-1076.8511209032454
+categorical__transmission_manual,-6.164902343523774e-09

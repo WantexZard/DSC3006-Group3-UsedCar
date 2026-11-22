@@ -1,0 +1,7 @@
+# Versions exercised for member-a-v1; this is not an exhaustive dependency lock.
+# Python 3.12.12
+numpy==2.5.4
+pandas==3.0.3
+scikit-learn==1.9.1
+scipy==1.18.1
+matplotlib==3.10.9

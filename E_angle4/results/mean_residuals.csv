@@ -1,0 +1,9 @@
+model_id,target_scale,evaluation_split,n,mean_residual_BDT,status
+Lasso_price,price,development_oof,4789,39820.145705477444,verified
+Lasso_log,log_price,development_oof,4789,200214.90212773808,verified
+RF_price_mf03,price,development_oof,4789,35885.40041197018,verified
+RF_log_mf03,log_price,development_oof,4789,178098.69329417276,verified
+Lasso_price,price,holdout_revision,1208,-51870.75002476121,verified
+Lasso_log,log_price,holdout_revision,1208,94400.93477341498,verified
+RF_price_mf03,price,holdout_revision,1208,-39275.213899282884,verified
+RF_log_mf03,log_price,holdout_revision,1208,110264.35077212706,verified

@@ -1,0 +1,62 @@
+{
+  "data_version": "member-a-v1",
+  "data_sha256": "6f4791ce8763b6c73aa3af82be9b3d3cf5065e4cd901737211476ec5b4c5097f",
+  "split_sha256": "eae5f790e40e356e2f17c7df4956cf85e02e6a5a7f049a2e40d8ab8ab468a179",
+  "total_rows": 5997,
+  "development_rows": 4789,
+  "test_rows": 1208,
+  "outer_cv": "Predefined 10 folds",
+  "inner_cv": "GroupKFold(n_splits=3)",
+  "estimator": "Lasso",
+  "random_state": 42,
+  "alpha_grid": [
+    100.0,
+    193.06977288832496,
+    372.7593720314938,
+    719.6856730011522,
+    1389.4954943731375,
+    2682.6957952797247,
+    5179.474679231213,
+    10000.0,
+    19306.977288832495,
+    37275.93720314938,
+    71968.56730011514,
+    138949.5494373136,
+    268269.57952797273,
+    517947.4679231202,
+    1000000.0
+  ],
+  "numeric_features": [
+    "car_age",
+    "kilometers_run",
+    "energy_capacity"
+  ],
+  "categorical_features": [
+    "brand",
+    "brand_model",
+    "fuel_type",
+    "transmission"
+  ],
+  "base_features": [
+    "car_age",
+    "kilometers_run",
+    "energy_capacity",
+    "brand",
+    "brand_model",
+    "fuel_type",
+    "transmission"
+  ],
+  "categorical_encoding": "OneHotEncoder",
+  "numeric_imputation": "Median within training fold",
+  "numeric_scaling": "StandardScaler within training fold",
+  "mileage_polynomial_unit": "10000 km",
+  "models": {
+    "M0": "Original seven feature groups",
+    "Age2": "M0 + age_squared",
+    "Mileage2": "M0 + mileage_squared",
+    "M1": "M0 + age_squared + mileage_squared",
+    "M2": "M1 + age_x_mileage"
+  },
+  "primary_metric": "Pooled OOF RMSE",
+  "selected_main_model": "M1"
+}

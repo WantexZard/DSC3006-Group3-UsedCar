@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+Angle5_member_a_v1_final_results/
+A_data/rebuilt/
