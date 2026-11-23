@@ -30,7 +30,7 @@
   "c_raw_price_verified": true,
   "lasso": "reused prior GroupKFold predictions, no refit",
   "c_raw_price_status": "row_id, y_true, fold and required RF config checks passed",
-  "historical_config": "results/development/config_used.json retained unchanged as a historical record, not current RF settings",
+  "historical_config": "no separate results/development/config_used.json is included; current RF/log settings are in results/rf_log_03/model_config.json",
   "price_quartile_edges_BDT": [
     75000.0,
     2280000.0,

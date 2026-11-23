@@ -539,7 +539,7 @@ def main() -> int:
         "preprocessing": {
             "numeric": "SimpleImputer(median) -> StandardScaler",
             "categorical": "SimpleImputer(most_frequent) -> OneHotEncoder(handle_unknown='ignore')",
-            "fuel": "SimpleImputer(most_frequent) -> OneHotEncoder(handle_unknown='ignore')  # 燃料多热",
+            "fuel": "FuelMultiHot: split pipe-delimited labels and apply MultiLabelBinarizer; missing values have no labels",
             "placement": "ColumnTransformer 内，每个训练折单独 fit（含内层折），不使用全量 fit_transform",
         },
         "ols_numerics": {

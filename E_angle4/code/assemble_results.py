@@ -151,7 +151,7 @@ def main():
     cfg=json.loads((results/'rf_log_03'/'model_config.json').read_text())
     cfg.update({'c_raw_price_verified':c_verified,'lasso':'reused prior GroupKFold predictions, no refit',
                 'c_raw_price_status':'row_id, y_true, fold and required RF config checks passed' if c_verified else 'C predictions/config not available; raw RF excluded from active figures',
-                'historical_config':'results/development/config_used.json retained unchanged as a historical record, not current RF settings',
+                'historical_config':'no separate results/development/config_used.json is included; current RF/log settings are in results/rf_log_03/model_config.json',
                 'price_quartile_edges_BDT':edges.tolist(),
                 'old_RF_results':'results/audit/legacy_1over3; not included in current metrics or figures'})
     if c_verified:

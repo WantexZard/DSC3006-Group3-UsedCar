@@ -64,7 +64,7 @@ def main() -> None:
     config_rows: list[dict] = []
     oof_matrix: dict[str, np.ndarray] = {}
     unknown_rows: list[dict] = []
-    resolved_features: dict[int, int] = {}
+    feature_counts: dict[int, int] = {}
     run_started = time.time()
 
     for index, overrides in enumerate(grid, start=1):
@@ -85,9 +85,9 @@ def main() -> None:
 
             block = metric_block(y[valid_pos], pred)
             fold_rmse.append(block["rmse"])
-            resolved_features[fold_id] = resolved_max_features(
-                overrides["max_features"], X_train.shape[1]
-            )
+            # Record the encoded width only; the winning max_features is applied
+            # below. Resolving here would be overwritten by every later config.
+            feature_counts[fold_id] = X_train.shape[1]
 
             if full_run and index == 1:
                 diag = unknown_diagnostics(pre, X.iloc[valid_pos])
@@ -191,7 +191,10 @@ def main() -> None:
             "mean_fold_rmse": float(best["mean_fold_rmse"]),
             "fold_rmse_sd": float(best["fold_rmse_sd"]),
         },
-        "resolved_max_features_per_fold": resolved_features,
+        "resolved_max_features_per_fold": {
+            fold_id: resolved_max_features(best_overrides["max_features"], n_columns)
+            for fold_id, n_columns in sorted(feature_counts.items())
+        },
         "selection_audit_leave_one_fold_out": audit,
         "selection_audit_note": (
             "Not nested CV. Models for the other folds were trained on data that includes "

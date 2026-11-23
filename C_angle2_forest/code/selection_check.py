@@ -15,6 +15,8 @@ materially if selection had been done without fold k. If the answer is "barely",
 single-level selection is defensible for this report; if it moves a lot, the
 limitation has to be stated next to the headline number.
 
+Reads: outputs/oof_all_configs_main.csv (written by a full tune_rf.py run; not included
+in this archive).
 Outputs: outputs/selection_stability.json (per-fold audit rows included) and a printed verdict.
 """
 
@@ -29,7 +31,14 @@ from common import OUTPUT_DIR, metric_block
 
 
 def main() -> None:
-    oof = pd.read_csv(OUTPUT_DIR / "oof_all_configs_main.csv")
+    oof_path = OUTPUT_DIR / "oof_all_configs_main.csv"
+    if not oof_path.exists():
+        raise SystemExit(
+            "Missing outputs/oof_all_configs_main.csv. selection_check.py needs the "
+            "full tune_rf.py output (12 configs x 10 folds); this file is not "
+            "included in the archive."
+        )
+    oof = pd.read_csv(oof_path)
     selection = json.loads((OUTPUT_DIR / "rf_selection_main.json").read_text(encoding="utf-8"))
     best_id = selection["best_model_id"]
     config_cols = [c for c in oof.columns if c.startswith("rf__")]

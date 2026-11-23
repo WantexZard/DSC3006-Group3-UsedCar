@@ -1,0 +1,15 @@
+# Preserve published bytes; do not let Git normalise line endings here.
+# Preserve whole-file hashes for shared data and the frozen C inputs and
+# their provenance copies in E.
+data/cleaned.csv -text
+data/split_manifest.csv -text
+C_angle2_forest/outputs/predictions.csv -text
+C_angle2_forest/outputs/test_predictions.csv -text
+C_angle2_forest/outputs/C_RF_price_0.3_model_config.json -text
+E_angle4/results/source_C/oof_predictions.csv -text
+E_angle4/results/source_C/holdout_predictions.csv -text
+E_angle4/results/source_C/model_config.json -text
+
+# CRLF is intentional in these tracked files; the CR is not trailing whitespace.
+C_angle2_forest/code/selection_check.py whitespace=cr-at-eol
+C_angle2_forest/outputs/rf_selection_main.json whitespace=cr-at-eol

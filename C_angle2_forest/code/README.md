@@ -11,11 +11,11 @@
 | `common.py` | 唯一的数据入口与公共工具：调用克隆进来的 `shared_preprocessing`，pooled OOF 指标、分组置换、RF 工厂、路径常量 | — |
 | `shared_preprocessing.py` | **自 A_data 交付包克隆**（逐字节一致）。数据读入、固定划分校验、预处理管线、编码列到解释组的映射 | — |
 | `build_dataset.py` | **自 A_data 交付包克隆**（逐字节一致）。被上一模块引用其常量与校验函数 | — |
-| `tune_rf.py` | 12 配置 × 10 折网格，按 **pooled OOF RMSE** 选参，附留一折选参稳定性审计 | `outputs/rf_tuning_main.csv`、`rf_tuning_folds_main.csv`、`oof_all_configs_main.csv`、`rf_selection_main.json`、`unknown_by_fold_main.csv` |
+| `tune_rf.py` | 12 配置 × 10 折网格，按 **pooled OOF RMSE** 选参，附留一折选参稳定性审计 | `outputs/rf_tuning_main.csv`、`oof_all_configs_main.csv`、`rf_selection_main.json`、`unknown_by_fold_main.csv` |
 | `evaluate_rf.py` | 用冻结配置逐折重拟合：OOF 预测、6 组原始变量置换（30 重复）、MDI 汇总、两种尺度排名对照 | `outputs/predictions.csv`、`metrics.csv`、`fold_metrics.csv`、`rf_permutation_*`、`rf_impurity_*`、`rf_importance_*` |
 | `evaluate_conditional.py` | 条件置换（只在同 `brand_model` 内重排 age / mileage / capacity），量化"超出车型的信息" | `outputs/rf_permutation_conditional_*.csv` |
-| `selection_check.py` | 留一折重新选参，量化单层十折的选择乐观量 | `outputs/selection_stability.csv`、`.json` |
-| `finalize_rf.py` | 全开发集重拟合冻结配置，**测试集只评估一次**；需要 `evaluate_rf.py` 先写出 `outputs/metrics.csv`；写出完整溯源 | `outputs/model_config.json`、`test_metrics.csv`、`test_predictions.csv`、`final_dev_metrics.csv` |
+| `selection_check.py` | 留一折重新选参，量化单层十折的选择乐观量；读取 `oof_all_configs_main.csv`（完整重训才生成） | `outputs/selection_stability.json` |
+| `finalize_rf.py` | 全开发集重拟合冻结配置，**测试集只评估一次**；需要 `evaluate_rf.py` 先写出 `outputs/metrics.csv`，随后向其中加入样本内和测试指标 | `outputs/model_config.json`、`metrics.csv`、`test_predictions.csv` |
 | `figures.py` | 6 张图（调参热图、组置换、两尺度对照、折间离散、raw vs conditional、配对 ΔRMSE） | `figures/fig01…fig06.png` |
 | `merge_angle2.py` | 把 B_angle2_linear 的线性模型预测与森林结果合并：先校验 `row_id`／折／`y_true` 三方一致，再算四模型 pooled 指标、配对 bootstrap 区间、Lasso 选择按解释组汇总 | `outputs/angle2_models.csv`、`angle2_lasso_groups.csv` |
 
@@ -47,7 +47,7 @@ python -B tune_rf.py          # 约 10 分钟（12 配置 × 10 折 × 500 棵�
 python -B evaluate_rf.py      # 约 4 分钟（含 1800 次置换预测）
 python -B evaluate_conditional.py   # 约 3 分钟
 python -B finalize_rf.py      # 秒级；会读测试集，务必在前三步之后
-python -B selection_check.py  # 秒级
+python -B selection_check.py  # 秒级；需先有完整重训生成的 oof_all_configs_main.csv
 python -B merge_angle2.py     # 秒级；需要 B_angle2_linear 的 predictions.csv
 python -B figures.py          # 秒级
 ```
@@ -56,7 +56,7 @@ python -B figures.py          # 秒级
 
 `tune_rf.py` 支持 `--limit-folds` / `--limit-configs` / `--tag`，用于小规模自测（自测产物用不同 tag，避免覆盖正式结果）。
 
-## 输出文件（14 个，按用途分三类）
+## 输出文件（完整重训后 14 个，按用途分三类；† 未随归档附带）
 
 | 文件 | 内容 | 谁读 |
 |---|---|---|
@@ -67,13 +67,15 @@ python -B figures.py          # 秒级
 | `model_config.json` | 数据哈希、预处理、超参、搜索空间、选参准则、版本 | 复现、E 复用 |
 | `rf_tuning_main.csv` | 12 个配置的完整网格（pooled + 折均值/SD） | 选参、热图 |
 | `rf_selection_main.json` | 冻结配置 + 留一折选参审计 + 每折实际取用列数 | 选参说明 |
-| `oof_all_configs_main.csv` | 12 个配置的逐行 OOF 预测（1.1 MB） | `selection_check.py` 复算稳定性 |
-| `selection_stability.json` | 留一折选参的逐折结果与结论 | 方法限制 |
-| `unknown_by_fold_main.csv` | 每折验证集中未见过类别的行数 | 限制说明 |
+| `oof_all_configs_main.csv`† | 12 个配置的逐行 OOF 预测（1.1 MB） | `selection_check.py` 复算稳定性 |
+| `selection_stability.json`† | 留一折选参的逐折结果与结论 | 方法限制 |
+| `unknown_by_fold_main.csv`† | 每折验证集中未见过类别的行数 | 限制说明 |
 | `importance.csv` | **长表**：group × measure（permutation_raw / permutation_conditional / impurity_mdi_share）× 值、折间 SD、重复内 SD | 幻灯片、摘要 |
-| `importance_by_fold.csv` | 同一长表的逐折明细 | 复核 SD 的来源 |
+| `importance_by_fold.csv`† | 同一长表的逐折明细 | 复核 SD 的来源 |
 | `angle2_models.csv` | 四模型指标 + 相对森林的配对差与 95% 区间 + 折间均值/SD | 幻灯片页 1、摘要 |
 | `angle2_lasso_groups.csv` | Lasso 选中的 60 列按解释组汇总 | 幻灯片页 2、摘要 |
+
+† 标记者只在完整重训后生成，当前归档的 `outputs/` 未包含。`selection_check.py` 读取其中 `oof_all_configs_main.csv`；归档内直接运行会提示缺少该文件，而不是静默跳过。
 
 早先一版把重要性拆成 6 个文件（raw／MDI／conditional × 汇总／逐折）、指标拆成 3 个（开发／样本内／测试），又把 Lasso 分组对照拆成 5 个；这些都是同一批数字的不同切法，现已并成长表或并入上面 14 个文件。
 
